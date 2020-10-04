@@ -1,19 +1,22 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { CollaboratorsListPage } from './pages';
-import { GlobalStyles } from './global/styles/global.styles';
+import { theme } from './global/theme/global.theme';
 
 function App() {
   return (
     <BrowserRouter>
-      <GlobalStyles />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          component={CollaboratorsListPage}
-        />
-      </Switch>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={CollaboratorsListPage}
+          />
+        </Switch>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
