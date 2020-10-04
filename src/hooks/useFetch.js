@@ -1,14 +1,12 @@
 import useSWR from 'swr';
-
-const baseURL = 'http://5d8b64ad3c0aaf0014342c2a.mockapi.io/api/v1/';
+import api from '../global/api';
 
 export function useFetch(resourceURL, options) {
-  const { data, error } = useSWR(resourceURL, async (requestResourceURL) => {
-    const response = await fetch(`${baseURL}${requestResourceURL}`, options);
-    const responseData = await response.json();
+  const { data, error, mutate } = useSWR(resourceURL, async (requestResourceURL) => {
+    const response = await api.get(requestResourceURL, options);
 
-    return responseData;
+    return response.data;
   });
 
-  return { data, error };
+  return { data, error, mutate };
 }
