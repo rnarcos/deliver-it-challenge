@@ -68,7 +68,7 @@ function CollaboratorFeedbackItem({
     <Card className={classNames(classes.cardContainer, className)}>
       <CardContent className={classes.feedbackContentWrapper}>
         <Typography variant="caption">
-          {message || ''}
+          {message}
         </Typography>
       </CardContent>
       <CardActions className={classes.feedbackActionsWrapper}>
