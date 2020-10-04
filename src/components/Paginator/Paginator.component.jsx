@@ -8,6 +8,7 @@ import { Pagination } from '@material-ui/lab';
 import { Grid } from '@material-ui/core';
 
 const propTypes = {
+  className: PropTypes.string,
   initialPage: PropTypes.string,
   perPage: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.object),
@@ -17,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  className: '',
   initialPage: '1',
   perPage: 10,
   items: [],
@@ -24,6 +26,7 @@ const defaultProps = {
 };
 
 export function Paginator({
+  className,
   initialPage,
   perPage,
   items,
@@ -61,6 +64,7 @@ export function Paginator({
   return (
     <Grid
       container
+      className={className}
       ref={paginatorListRef}
       direction="column"
       spacing={3}
