@@ -1,5 +1,13 @@
 export default (theme) => ({
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  feedbackContentWrapper: {
+    flex: '9.99 0.01',
+  },
   feedbackActionsWrapper: {
+    flex: '0.01 9.99',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import classNames from 'classnames';
 
 import {
   makeStyles,
@@ -64,8 +65,8 @@ function CollaboratorFeedbackItem({
   }
 
   return (
-    <Card className={className}>
-      <CardContent>
+    <Card className={classNames(classes.cardContainer, className)}>
+      <CardContent className={classes.feedbackContentWrapper}>
         <Typography variant="caption">
           {message || ''}
         </Typography>
