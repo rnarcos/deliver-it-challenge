@@ -15,13 +15,11 @@ function App() {
             path="/"
             component={CollaboratorsListPage}
           />
-          <Route exact path="/collaborators/:collaboratorId">
-            {(routeParams) => (
-              <CollaboratorDetailsPage
-                collaboratorId={routeParams.match.params.collaboratorId}
-              />
-            )}
-          </Route>
+          <Route
+            exact
+            path="/collaborators/:collaboratorId"
+            component={CollaboratorDetailsPage}
+          />
         </Switch>
       </ThemeProvider>
     </BrowserRouter>
