@@ -68,15 +68,23 @@ export function Paginator({
       alignContent="center"
     >
       {shownItems.map((item, index) => (
-        <Grid item key={keyExtractor({ item, index })}>
+        <React.Fragment key={keyExtractor({ item, index })}>
           {renderItem({ item, index })}
-        </Grid>
+        </React.Fragment>
       ))}
-      <Pagination
-        count={numberOfPages}
-        page={page}
-        onChange={handlePageChange}
-      />
+      <Grid
+        item
+        container
+        alignItems="center"
+        justify="center"
+        spacing={1}
+      >
+        <Pagination
+          count={numberOfPages}
+          page={page}
+          onChange={handlePageChange}
+        />
+      </Grid>
     </Grid>
   );
 }
