@@ -1,68 +1,264 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Desafio técnico de ReactJS.
 
-## Available Scripts
+## Portal de Feedbacks
 
-In the project directory, you can run:
+### **Goal**
+This challenge's goal is to build a feedback portal in ReactJS where people can annonymously comment on their co-workers page. No layout will be defined, it's up to the developer to create the layout as wished.
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **Collaborator List**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Populate the collaborators list.
+* List name, company and role for each collaborator.
+* Paginar a listagem, com limite de 10 colaboradores por página
+* Paginate the list, limiting 10 collaborators per page.
+* When clicking on a collaborator, redirect to it's detail screen.
 
-### `yarn test`
+### **Collaborator Detail**
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Populate the screen with the collaborator details.
+* Populate the collaborator feedback list.
+* Allow creation of a new feedback for the collaborator.
+* Allow likes incremention for a previously created feedback.
+* Allow deleting a feedback created within 5 minutes.
+* Paginate the feedback list, limiting 20 feedbacks per page.
 
-### `yarn build`
+<br />
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This app is currently hosted at: https://rnarcos-react-evaluation-app.netlify.app/
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+----
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />
 
-### `yarn eject`
+## API:
+_Base URL_: http://5d8b64ad3c0aaf0014342c2a.mockapi.io/api/v1
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**1. Retrieve all collaborators list**
+----
+  _Endpoint to fetch the collaborators List._
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* **Resource URL**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  _/collaborator_
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* **Method:**
 
-## Learn More
+  `GET`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* **Success Response:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  * **Code:** _200_ <br />
+  * **Content:** 
+    ```json
+    [
+      {
+        "id": "1",
+        "createdAt": "2019-09-25T00:29:47.689Z",
+        "name": "Felipe",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/happypeter1983/128.jpg",
+        "company": "Wyman Group",
+        "role": "Liaison"
+      },
+      {
+        "id": "2",
+        "createdAt": "2019-09-24T20:55:20.489Z",
+        "name": "Dorothea Hansen",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adobi/128.jpg",
+        "company": "Cummerata, Upton and Gulgowski",
+        "role": "Analyst"
+      },
+      //...
+    ]
+    ```
 
-### Code Splitting
+**2. Retrieve a collaborator details**
+----
+  Endpoint to fetch a collaborator details.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* **Resource URL**
 
-### Analyzing the Bundle Size
+  _/collaborator/{collaboratorId}_
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* **Method:**
 
-### Making a Progressive Web App
+  `GET`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+*  **URL Params**
+ 
+   `collaboratorId=[string]`
 
-### Advanced Configuration
+* **Success Response:**
+  
+  * **Code:** _200_ <br />
+  * **Content:** 
+    ```json
+    {
+      "id": "51",
+      "createdAt": "2019-09-24T23:36:26.864Z",
+      "name": "Felipe",
+      "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/happypeter1983/128.jpg",
+      "company": "Wyman Group",
+      "role": "Liaison"
+    }
+    ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+**3. Retrieve a collaborator feedbacks list**
+----
+  Endpoint to fetch a list of feedbacks from a collaborator.
 
-### Deployment
+* **Resource URL**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+  _/collaborator/{collaboratorId}/feedback/{feedbackId}_
 
-### `yarn build` fails to minify
+* **Method:**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  `GET`
+
+*  **URL Params**
+ 
+   `collaboratorId=[string]`
+
+   `feedbackId=[string]`
+
+* **Success Response:**
+  
+  * **Code:** _200_ <br />
+  * **Content:** 
+    ```json
+    [
+      {
+        "id": "1",
+        "collaboratorId": "1",
+        "createdAt": "2019-09-24T17:06:22.988Z",
+        "message": "monitor connecting Extended",
+        "like": 2
+      },
+      {
+        "id": "2",
+        "collaboratorId": "1",
+        "createdAt": "2019-09-24T17:06:22.988Z",
+        "message": "monitor connecting Extended",
+        "like": 2
+      },
+      //...
+    ]
+    ```
+
+**4. Like a collaborator feedback**
+----
+  Endpoint to update the data from feedback to a collaborator.
+
+* **Resource URL**
+
+  _/collaborator/{collaboratorId}/feedback/{feedbackId}_
+
+* **Method:**
+
+  `PUT`
+
+*  **URL Params**
+ 
+   `collaboratorId=[string]`
+
+   `feedbackId=[string]`
+
+
+* **Data Params**
+
+  * **Content:**
+      ```json
+      {
+        "like": 10,
+      }
+      ```
+
+
+* **Success Response:**
+  
+  * **Code:** _200_ <br />
+  * **Content:** 
+    ```json
+    {
+      "id": "1",
+      "collaboratorId": "1",
+      "createdAt": "2019-09-24T17:06:22.988Z",
+      "message": "monitor connecting Extended",
+      "like": 10
+    }
+    ```
+
+**5. Create a collaborator feedback**
+----
+  Endpoint to create a feedback to a collaborator.
+
+* **Resource URL**
+
+  _/collaborator/{collaboratorId}/feedback/{feedbackId}_
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+ 
+   `collaboratorId=[string]`
+
+   `feedbackId=[string]`
+
+
+* **Data Params**
+
+  * **Content:**
+      ```json
+      {
+        "message": "monitor connecting Extended",
+        "like": 0,
+      }
+      ```
+
+
+* **Success Response:**
+  
+  * **Code:** _200_ <br />
+  * **Content:** 
+    ```json
+    {
+      "id": "51",
+      "collaboratorId": "1",
+      "createdAt": "2019-09-25T07:53:06.710Z",
+      "message": "monitor connecting Extended",
+      "like": 0
+    }
+    ```
+
+**6. Delete a collaborator feedback**
+----
+  Endpoint to delete a collaborator feedback.
+
+* **Resource URL**
+
+  _/collaborator/{collaboratorId}/feedback/{feedbackId}_
+
+* **Method:**
+
+  `DELETE`
+
+*  **URL Params**
+ 
+   `collaboratorId=[string]`
+
+* **Success Response:**
+  
+  * **Code:** _200_ <br />
+  * **Content:** 
+    ```json
+    {
+      "id": "51",
+      "collaboratorId": "1",
+
+      "createdAt": "2019-09-25T07:53:06.710Z",
+      "message": "monitor connecting Extended",
+      "like": 2
+    }
+    ```
