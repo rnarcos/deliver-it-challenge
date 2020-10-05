@@ -198,17 +198,19 @@ function CollaboratorDetailsPage() {
 
   return (
     <div className={classes.container}>
-      {!collaboratorDetailsData ? (
-        <CircularProgress />
-      ) : (
-        <>
-          <CollaboratorFeedbackFormDialog
-            open={isFeedbackFormDialogOpen}
-            collaboratorName={collaboratorDetailsData.name}
-            onSubmit={onFeedbackAdd}
-            onClose={handleCloseFeedbackFormDialog}
-          />
-          <Paper className={classes.paper}>
+      <CollaboratorFeedbackFormDialog
+        open={isFeedbackFormDialogOpen}
+        collaboratorName={collaboratorDetailsData?.name ?? ''}
+        onSubmit={onFeedbackAdd}
+        onClose={handleCloseFeedbackFormDialog}
+      />
+      <Paper className={classes.paper}>
+        {!collaboratorDetailsData ? (
+          <div className={classes.loadingIndicatorWrapper}>
+            <CircularProgress />
+          </div>
+        ) : (
+          <>
             <div className={classes.collaboratorIdentificationWrapper}>
               <IconButton
                 className={classes.arrowBackButton}
@@ -249,8 +251,10 @@ function CollaboratorDetailsPage() {
                   </Button>
                 </Tooltip>
               </div>
-              {!collaboratorFeedbackData ? (
-                <CircularProgress />
+              {!collaboratorDetailsData ? (
+                <div className={classes.loadingIndicatorWrapper}>
+                  <CircularProgress />
+                </div>
               ) : (
                 <Paginator
                   className={classes.collaboratorFeedbackListContainer}
@@ -272,9 +276,9 @@ function CollaboratorDetailsPage() {
                 />
               )}
             </div>
-          </Paper>
-        </>
-      )}
+          </>
+        )}
+      </Paper>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
