@@ -8,6 +8,13 @@ export default (theme) => ({
     width: '50%',
     padding: 20,
     margin: 30,
+    minHeight: 350,
+  },
+  loadingIndicatorWrapper: {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   collaboratorIdentificationWrapper: {
     display: 'flex',
